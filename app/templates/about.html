@@ -1,0 +1,245 @@
+{% extends 'layout_left_sidebar.html' %}
+
+
+{% block content_left %}
+    <div class="d-flex align-items-center justify-content-center mb-4 ml-4">
+        <img class="rounded-circle" src="{{ url_for('static', filename='image/Avatar.png') }}" alt="Generic placeholder image" width="140" height="140">
+    </div>
+	<table class="table">
+		<tbody>
+		<tr>
+			<td>
+				<button class="btn">
+					<a href="https://www.linkedin.com/in/chengen-sung/" target="_blank">
+						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+						<path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+						</svg>
+					</a>
+				</button>
+			</td>
+			<td>
+				<p class="mt-2"> Linkedin </p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button class="btn">
+					<a href="https://github.com/cesung" target="_blank">
+						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+						<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+						</svg>
+					</a>
+				</button>
+			</td>
+			<td>
+                <p class="mt-2">Github</p>
+            </td>
+		</tr>
+		<tr>
+			<td>
+				<button class="btn">
+					<a href="mailto:chengensung11235813@gmail.com" target="_blank">
+						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-mailbox2" viewBox="0 0 16 16">
+						<path d="M9 8.5h2.793l.853.854A.5.5 0 0 0 13 9.5h1a.5.5 0 0 0 .5-.5V8a.5.5 0 0 0-.5-.5H9v1z"/>
+						<path d="M12 3H4a4 4 0 0 0-4 4v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a4 4 0 0 0-4-4zM8 7a3.99 3.99 0 0 0-1.354-3H12a3 3 0 0 1 3 3v6H8V7zm-3.415.157C4.42 7.087 4.218 7 4 7c-.218 0-.42.086-.585.157C3.164 7.264 3 7.334 3 7a1 1 0 0 1 2 0c0 .334-.164.264-.415.157z"/>
+						</svg>
+					</a>
+				</button>
+			</td>
+			<td>
+                <p class="mt-2">Gmail</p>
+            </td>
+		</tr>
+		<tr>
+			<td>
+				<button class="btn">
+					<a href="{{ url_for('static', filename='cv/cheng_en_sung_cv.pdf')}}" target="_blank">
+						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+						<path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+						<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
+						</svg>
+					</a>
+				</button>
+			</td>
+			<td>
+                <p class="mt-2">CV&nbsp;/&nbsp;Resume</p>
+            </td>
+		</tr>
+		</tbody>
+	</table>
+{% endblock content_left %}
+
+{% block content_right %}
+	<div class="container">
+		<div class="row justify-content-md-center">
+			<div class="col-md-10">
+                <h1 class="text-secondary mb-3">Cheng-En Sung</h1>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase-fill mr-1" viewBox="0 0 16 16">
+				  <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/>
+				  <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z"/>
+				</svg> Software Engineering Intern at Graphen, Inc.</p>
+				<p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill mr-1" viewBox="0 0 16 16">
+				  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+				</svg> Taipei City, Taiwan (R.O.C) </p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-inbound-fill mr-1" viewBox="0 0 16 16">
+				  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zM15.854.146a.5.5 0 0 1 0 .708L11.707 5H14.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 1 0v2.793L15.146.146a.5.5 0 0 1 .708 0z"/>
+				</svg> +886 9 63722808</p>
+				<h2 class="mt-5">Summary</h2>
+				<hr class="mt-2 mb-3">
+				<p class="text-left">Possess strong background knowledge with Graph Mining, and Social Network Analysis. Seeking a software engineering position in spring 2021, specialized in back-end software development.</p>
+
+				<h2>Education</h2>
+				<hr class="mt-2 mb-3">
+					<div class="float-left">
+						<p><strong>National Cheng Kung University</strong></p>
+					</div>
+					<div class="float-right">
+						<p>Sep. 2017 – Jun. 2019 </p>
+					</div>
+					<div class="clearfix"></div>
+					<p class="text-left">Master of Science in Computer and Communication Engineering</p>
+					<ul>
+						<li>Coursework: Data Mining, Big Data Analytics, Internet of Things</li>
+						<li>GPA (Overall): 3.8 / 4.0</li>
+					</ul>
+
+					<div class="float-left">
+						<p><strong>Yuan Ze University</strong></p>
+					</div>
+					<div class="float-right">
+						<p>Sep. 2013 – Jun. 2017</p>
+					</div>
+					<div class="clearfix"></div>
+					<p class="text-left">Bachelor of Science in Computer Science</p>
+					<ul>
+						<li>Coursework: Computer Graphic, Agile Software Development</li>
+						<li>GPA (Last 2yrs): 3.92 / 4.0</li>
+					</ul>
+	
+
+				<h2>Wrok Experience</h2>
+				<hr class="mt-2 mb-3">
+					<div class="float-left">
+						<p><strong>Software Engineering Intern</strong> at Graphen, Inc.</p>
+					</div>
+					<div class="float-right">
+						<p>Oct. 2020 – Feb. 2021</p>
+					</div>
+					<div class="clearfix"></div>
+					<ul>
+						<li>Introduced Bayesian Network into graph database as a core framework for model prediction</li>
+						<li>Implemented K2 Algorithm for network structure discovery</li>
+					</ul>
+
+					<div class="float-left">
+						<p><strong>Research Assistant</strong> at Yuan Ze University</p>
+					</div>
+					<div class="float-right">
+						<p>Jun. 2017 – Aug. 2017</p>
+					</div>
+					<div class="clearfix"></div>
+					<ul>
+						<li>Optimized parameter for USRP Hardware Driver (UHD)</li>
+						<li>Implemented multi-threading TX/RX signal transmission on UHD in C++</li>
+					</ul>
+
+					<div class="float-left">
+						<p><strong>Software Engineering Intern</strong> at Industrial Technology Research Institute</p>
+					</div>
+					<div class="float-right">
+						<p>Jan. 2016 – Jan. 2017</p>
+					</div>
+					<div class="clearfix"></div>
+					<ul>
+						<li>Configured ModSecurity for Apache server by customizing rules using Regex</li>
+						<li>Wrote SQL injection to access the security configuration of the firewall</li>
+					</ul>
+
+				<h2>Publications</h2>
+				<hr class="mt-2 mb-3">
+					<p class="text-left"><strong>C. -E. Sung</strong>, H. -S. Ma and J. -W. Huang, <i>”Positive Influence Maximization and Negative Influence Minimization in Signed Networks under Competitive Independent Cascade Model,”</i> 2020 IEEE 7th International Conference on Data Science and Advanced Analytics (DSAA), sydney, Australia, 2020, pp. 236-244, doi: 10.1109/DSAA49011.2020.00036.</p>
+					<p class="text-left">C. Lee, <strong>C. Sung</strong>, H. Ma, and J. Huang, <i>”IDR: Positive Influence Maximization and Negative Influence Minimization Under Competitive Linear Threshold Model,”</i> 2019 20th IEEE International Conference on Mobile Data Management (M.D.M.), Hong Kong, 2019, pp. 501-506, doi: 10.1109/MDM.2019.00013</p>
+		
+				<h2>Project</h2>
+				<hr class="mt-2 mb-3">
+					<div class="float-left">
+						<p>Community Detection</p>
+					</div>
+					<div class="float-right">
+						<p>Feb. 2018 – Jun. 2018</p>
+					</div>
+					<div class="clearfix"></div>
+					<ul>
+						<li>Implemented <i>SLPA</i> algorithm to discern underlying communities structure</li>
+						<li><i>SLPA</i> algorithm out-performed Louvain algorithm up to <strong>9%</strong> in terms of Normalized Mutual Information
+</li>
+					</ul>
+
+					<div class="float-left">
+						<p>Girlfriend Generator</p>
+					</div>
+					<div class="float-right">
+						<p>Feb. 2018 – Jun. 2018</p>
+					</div>
+					<div class="clearfix"></div>
+					<ul>
+						<li>Implemented <i>Deep Convolutional Generative Adversarial Network (DCGAN)</i> to generate anime characters</li>
+						<li>Adopted <i>illustration2vec</i>  to conduct features tagging of generated images</li>
+					</ul>
+
+				<h2>Competition</h2>
+				<hr class="mt-2 mb-3">
+					<div class="float-left">
+						<p><strong>ACM-ICPC National Contest for Private University</strong></p>
+					</div>
+					<div class="float-right">
+						<p>Jun. 28, 2017</p>
+					</div>
+					<div class="clearfix"></div>
+					<p class="text-left">ACM-ICPC Contest Council for Taiwan</p>
+					<ul>
+						<li>Ranked 19 out of 61 teams (ratio of the rank: 31.1%)</li>
+					</ul>
+
+					<div class="float-left">
+						<p><strong>Collegiate Programming Examination</strong></p>
+					</div>
+					<div class="float-right">
+						<p>May 26, 2015</p>
+					</div>
+						<div class="clearfix"></div>
+					<p class="text-left">ACM-ICPC Contest Council for Taiwan</p>
+					<ul>
+						<li>Ranked 114 out of 1818 participants (ratio of the rank: 6.3%)</li>
+					</ul>
+
+				<h2>Skills</h2>
+				<hr class="mt-2 mb-3">
+                <p> Software and Tools:</p>
+				<ul class="mt-1" style="column-count: 2;">
+					<li class="mb-1">OpenCV</li>
+					<li class="mb-1">MySQL</li>
+					<li class="mb-1">Sqlite</li>
+					<li class="mb-1">MongoDB</li>
+					<li class="mb-1">Git</li>
+					<li class="mb-1">Flask</li>
+				</ul>
+                <p> Programming Language: </p>
+				<ul class="mt-1" style="column-count: 2;">
+					<li class="mb-1">C/C++</li>
+					<li class="mb-1">Python 2.7/3.5+</li>
+					<li class="mb-1">Java</li>
+					<li class="mb-1">JavaScript (ES6)</li>
+				</ul>
+                <p> Machine Learning Package: </p>
+				<ul class="mt-1" style="column-count: 2;">
+					<li class="mb-1">Sklearn</li>
+					<li class="mb-1">XGBoost</li>
+					<li class="mb-1">Keras</li>
+					<li class="mb-1">PyTorch</li>
+				</ul>
+			</div>
+		</div>
+	  </div>
+	</div>
+{% endblock content_right %}
