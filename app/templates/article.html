@@ -50,6 +50,7 @@
 				</div>
 			</div>
 			<h3 class="article-title">
+                {{ title }}
 				{{ article.title }}
 			</h3>
             <div class="article-metadata">
@@ -92,7 +93,7 @@
 
 
             </div>
-            <p class="card-text mb-auto mt-2" style="white-space: pre-wrap;">{{ article.content }} </p>
+            <p class="card-text mb-auto mt-2">{{ content | safe }} </p>
         </div>
     </div>
 	<!-- Modal -->

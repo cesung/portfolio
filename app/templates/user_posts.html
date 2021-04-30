@@ -72,11 +72,7 @@
                 {% endif %}
 
                 </div>
-                {% if article.content.split('\n') | length > MAX_POST_LINES %}
-                    <p class="card-text mb-auto mt-2" style="white-space: pre-wrap;">{{ article.content.split('\r\n')[:MAX_POST_LINES] | join('\r\n') }}</p>
-                {% else%}
-                    <p class="card-text mb-auto mt-2" style="white-space: pre-wrap;">{{ article.content }}</p>
-                {% endif %}
+                <p class="card-text mb-auto mt-2">{{ article.content | safe }}</p>
                 <a class="btn btn-primary btn-sm mt-2" href="{{ url_for('article', article_id=article.id) }}">Continue</a>
 
 			</div>

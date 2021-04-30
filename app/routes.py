@@ -1,13 +1,15 @@
 import os
 import uuid
-from datetime import datetime
+import markdown
+import markdown2
 from PIL import Image
 from functools import wraps
-from flask import render_template, url_for, flash, redirect, request, abort 
+from datetime import datetime
 from app import app, db, bcrypt
 from app.models import User, Article
-from app.forms import AddUserForm, DeleteUserForm, LoginForm, UpdateProfileForm, ArticleForm
+from flask import render_template, url_for, flash, redirect, request, abort 
 from flask_login import login_user, current_user, logout_user, login_required 
+from app.forms import AddUserForm, DeleteUserForm, LoginForm, UpdateProfileForm, ArticleForm
 
 APP_ROOT = app.root_path
 PROFILE_PICTURE_PATH = os.path.join(APP_ROOT, 'static/profile_image')
@@ -39,6 +41,18 @@ def about():
 def posts():
     page = request.args.get('page', 1, type=int)
     articles = Article.query.order_by(Article.date_posted.desc()).paginate(per_page=ARTICLES_PER_PAGE, page=page)
+
+    for article in articles.items:
+        article.content = markdown2.markdown(article.content, extras=[
+            "fenced-code-blocks",
+            "code-friendly",
+            "cuddled-lists",
+            "tables",
+            "task_list",
+            "footnotes",
+            "xml",
+            "target-blank-links",
+        ])
 
     return render_template('posts.html', title='Posts', articles=articles, cur_time=datetime.utcnow())
 
@@ -188,7 +202,16 @@ def create_article():
 @app.route('/posts/<int:article_id>')
 def article(article_id):
     article = Article.query.get_or_404(article_id)
-    return render_template('article.html', title=article.title, article=article, cur_time=datetime.utcnow())
+    return render_template('article.html', title=article.title, article=article, content=markdown2.markdown(article.content, extras=[
+        "fenced-code-blocks",
+        "code-friendly",
+        "cuddled-lists",
+        "tables",
+        "task_list",
+        "footnotes",
+        "xml",
+        "target-blank-links",
+    ]), cur_time=datetime.utcnow())
 
 @app.route('/posts/<int:article_id>/update', methods=['GET', 'POST'])
 @login_required
@@ -238,6 +261,18 @@ def user_posts(username):
     articles = Article.query.filter_by(author=user) \
         .order_by(Article.date_posted.desc()) \
         .paginate(per_page=ARTICLES_PER_PAGE, page=page)
+
+    for article in articles.items:
+        article.content = markdown2.markdown(article.content, extras=[
+            "fenced-code-blocks",
+            "code-friendly",
+            "cuddled-lists",
+            "tables",
+            "task_list",
+            "footnotes",
+            "xml",
+            "target-blank-links",
+        ])
 
     return render_template('user_posts.html', title='Articles', articles=articles, \
                             user=user, cur_time=datetime.utcnow())

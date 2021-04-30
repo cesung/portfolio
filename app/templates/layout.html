@@ -8,8 +8,8 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!-- Customize CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/autumn.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/carousel.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
         {% if title %}
             <title>Cheng-En Sung - {{title}} </title>
@@ -69,7 +69,7 @@
                                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                     </svg>
                                     New&nbsp;Article
-                                </nobr>	
+                                </nobr>
                             </a>
                             <a class="nav-item nav-link" href="{{ url_for('account') }}">
                                 <nobr>
@@ -150,7 +150,7 @@
 											Request
 										</nobr>
 									</a>
-								</div>                        
+								</div>
                         {% endif %}
                     </div>
                 </div>
