@@ -95,8 +95,8 @@
 
 									<a class="dropdown-item dropdown-link" href="{{ url_for('logout') }}">
 										<nobr>
-											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-door-open-fill mb-2" viewBox="0 0 16 16">
-												<path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-toggles mb-2" viewBox="0 0 16 16">
+												<path d="M4.5 9a3.5 3.5 0 1 0 0 7h7a3.5 3.5 0 1 0 0-7h-7zm7 6a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm-7-14a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm2.45 0A3.49 3.49 0 0 1 8 3.5 3.49 3.49 0 0 1 6.95 6h4.55a2.5 2.5 0 0 0 0-5H6.95zM4.5 0h7a3.5 3.5 0 1 1 0 7h-7a3.5 3.5 0 1 1 0-7z"/>
 											</svg>
 											Logout
 										</nobr>
@@ -111,6 +111,7 @@
                                             </nobr>
                                         </a>
                                     {% else %}
+                                    <!--
 									<a class="dropdown-item dropdown-link disabled" href="#">
 										<nobr>
 											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-circle mb-2" viewBox="0 0 16 16">
@@ -120,6 +121,7 @@
 											Request
 										</nobr>
 									</a>
+                                    -->
                                     {% endif %}
 								</div>
                         {% else %}
@@ -143,6 +145,7 @@
 											Login
 										</nobr>
 									</a>
+                                    <!--
 									<a class="dropdown-item dropdown-link disabled" href="#">
 										<nobr>
 											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-circle mb-2" viewBox="0 0 16 16">
@@ -152,6 +155,7 @@
 											Request
 										</nobr>
 									</a>
+                                    -->
 								</div>
                         {% endif %}
                     </div>
