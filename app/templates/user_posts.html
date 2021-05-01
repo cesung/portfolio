@@ -11,14 +11,13 @@
 {% block content %}
 
     <div class="d-flex article-billboard">
-        <h1 class="mb-3"> Posts by <a href="{{ url_for('user_posts', username=user.username) }}">{{ user.username }}</a></h1>
         <div class="ml-auto mt-2">
             <nobr>
-                <a class="btn btn-secondary btn-sm m-1" href={{ url_for('posts') }}>
+                <a class="btn btn-secondary btn-sm mb-2 mt-2" href={{ url_for('posts') }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-up mb-1" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"/>
                     </svg>
-                    Back
+                    Return
                 </a>
             </nobr>
         </div>
@@ -72,10 +71,14 @@
                 {% endif %}
 
                 </div>
-                <p class="card-text mb-auto mt-2">{{ article.content | safe }}</p>
-                <a class="btn btn-primary btn-sm mt-2" href="{{ url_for('article', article_id=article.id) }}">Continue</a>
-
+                <div class="card-text">
+                    <p class="mb-auto mt-2">{{ article.content | safe }}</p>
+                </div>
 			</div>
+            <p class="gradient"></p>
+            <p class="read-more">
+                <a class="btn btn-outline-info btn-sm" href="{{ url_for('article', article_id=article.id) }}">More</a>
+            </p>
 		</div>
 	{% endfor %}
     <div class="d-flex align-items-center justify-content-center">

@@ -93,6 +93,10 @@ def manage():
     if delete_user_form.delete_submit.data and delete_user_form.validate():
         user = User.query.filter_by(username=delete_user_form.delete_username.data).first_or_404()
 
+        for post in user.posts:
+            db.session.delete(post)
+            db.session.commit()
+
         db.session.delete(user)
         db.session.commit()
 

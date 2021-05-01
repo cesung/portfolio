@@ -19,7 +19,7 @@
 				<strong class="d-inline-block mb-2 text-success">{{ article.category }}</strong>
 				<div class="ml-auto">
                     <nobr>
-                        <a class="btn btn-secondary btn-sm m-1" href={{ url_for('posts') }}>
+                        <a class="btn btn-outline-secondary btn-sm m-1" href={{ url_for('posts') }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-up mb-1" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"/>
                             </svg>
@@ -28,7 +28,7 @@
                     </nobr>
 					{% if article.author == current_user %}
                         <nobr>
-                            <a class="btn btn-primary btn-sm m-1" href={{ url_for('update_article', article_id=article.id) }}>
+                            <a class="btn btn-outline-primary btn-sm m-1" href={{ url_for('update_article', article_id=article.id) }}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat mb-1" viewBox="0 0 16 16">
                                     <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
                                     <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
@@ -39,7 +39,7 @@
 					{% endif %}
                     {% if article.author == current_user or current_user.role == ROLE_ADMIN %}
                     <nobr>
-                        <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">
+                        <button type="button" class="btn btn-outline-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill mb-1" viewBox="0 0 16 16">
                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                             </svg>
@@ -89,10 +89,8 @@
                 {% elif timespan >= YEAR %}
                     <small class="text-muted mr-2">{{ timespan // YEAR }} year</small>
                 {% endif %}
-
-
             </div>
-            <p class="card-text mb-auto mt-2">{{ content | safe }} </p>
+            <p class="mb-auto mt-2">{{ content | safe }} </p>
         </div>
     </div>
 	<!-- Modal -->

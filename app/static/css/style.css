@@ -1,5 +1,5 @@
 * {
-    font-family: "Montserrat", serif; 
+    font-family: "Montserrat", serif;
 }
 body {
     background: #fafafa;
@@ -7,10 +7,43 @@ body {
     margin-top: 5rem;
 }
 
+div.left-sidebar {
+    position: fixed;
+}
+
 div.card {
     box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.05);
     border-radius: 10px;
 }
+
+div.card div.card-body div.card-text {
+    max-height: 150px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+div.card p.gradient {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    padding: 50px;
+    background-image: linear-gradient(to bottom, transparent, white);
+}
+
+div.card p.read-more {
+    max-height: 30px;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    padding: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: white;
+}
+
 
 td a {
     color: inherit;
@@ -59,7 +92,7 @@ h6 {
 
 .site-header .navbar-nav .nav-item .dropdown-item {
     font-size: 30px;
-} 
+}
 
 .site-header .navbar-nav .nav-link.active .dropdown-link.active {
     font-weight: 500;

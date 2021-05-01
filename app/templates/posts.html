@@ -59,10 +59,16 @@
                         {% endif %}
 
                     </div>
-                    <p class="card-text mb-auto mt-2">{{ article.content | safe }}</p>
-                    <a class="btn btn-primary btn-sm" href="{{ url_for('article', article_id=article.id) }}">Continue</a>
+                    <div class="card-text">
+                        <p class="mb-auto mt-2">{{ article.content | safe }}</p>
+                    </div>
                 </div>
+                <p class="gradient"></p>
+                <p class="read-more">
+                    <a class="btn btn-outline-info btn-sm" href="{{ url_for('article', article_id=article.id) }}">More</a>
+                </p>
             </div>
+
         {% endfor %}
         <div class="d-flex align-items-center justify-content-center">
             {% if articles.has_prev %}
@@ -99,7 +105,7 @@
         </div>
     {% else %}
         <small class="text-muted">
-            No posts yet! <a class="ml-2" href="{{ url_for('create_article') }}">Share anything with us?</a> 
+            No posts yet! <a class="ml-2" href="{{ url_for('create_article') }}">Share anything with us?</a>
         </small>
     {% endif %}
 {% endblock content %}
