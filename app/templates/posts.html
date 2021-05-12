@@ -1,6 +1,5 @@
 {% extends 'layout.html' %}
 
-{% set MAX_POST_LINES = 5 %}
 {% set MINUTE = 60 %}
 {% set HOUR = 60**2 %}
 {% set DAY = 24*60**2 %}
@@ -59,7 +58,7 @@
                         {% endif %}
 
                     </div>
-                    <div class="card-text">
+                    <div class="card-text-billboard">
                         <p class="mb-auto mt-2">{{ article.content | safe }}</p>
                     </div>
                 </div>

@@ -90,7 +90,9 @@
                     <small class="text-muted mr-2">{{ timespan // YEAR }} year</small>
                 {% endif %}
             </div>
-            <p class="mb-auto mt-2">{{ content | safe }} </p>
+            <div class="card-text">
+                <p class="mb-auto mt-2">{{ content | safe }} </p>
+            </div>
         </div>
     </div>
 	<!-- Modal -->

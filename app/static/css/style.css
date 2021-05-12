@@ -16,11 +16,18 @@ div.card {
     border-radius: 10px;
 }
 
-div.card div.card-body div.card-text {
+div.card div.card-body div.card-text-billboard {
+    max-width: 500px;
     max-height: 150px;
     position: relative;
     overflow: hidden;
     margin-bottom: 30px;
+}
+
+div.card div.card-body div.card-text {
+    max-width: 600px;
+    position: relative;
+    overflow: auto;
 }
 
 div.card p.gradient {
