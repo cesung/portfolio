@@ -2,13 +2,14 @@ import os
 import uuid
 import markdown
 import markdown2
+import requests
 from PIL import Image
 from functools import wraps
-from datetime import datetime
+from datetime import datetime, timedelta
 from app import app, db, bcrypt
-from app.models import User, Article
-from flask import render_template, url_for, flash, redirect, request, abort 
-from flask_login import login_user, current_user, logout_user, login_required 
+from app.models import User, Article, Quote
+from flask import render_template, url_for, flash, redirect, request, abort
+from flask_login import login_user, current_user, logout_user, login_required
 from app.forms import AddUserForm, DeleteUserForm, LoginForm, UpdateProfileForm, ArticleForm
 
 APP_ROOT = app.root_path
@@ -40,7 +41,18 @@ def about():
 @app.route('/posts')
 def posts():
     page = request.args.get('page', 1, type=int)
+    all_articles = Article.query.all()
     articles = Article.query.order_by(Article.date_posted.desc()).paginate(per_page=ARTICLES_PER_PAGE, page=page)
+
+    quote = Quote.query.first()
+    cur_time = datetime.utcnow()
+    if cur_time - timedelta(hours=24) > quote.date:
+        url = "https://api.quotable.io/random"
+        response = requests.get(url)
+        quote.date = cur_time
+        quote.content = response.json()['content']
+        db.session.commit()
+
 
     for article in articles.items:
         article.content = markdown2.markdown(article.content, extras=[
@@ -54,7 +66,7 @@ def posts():
             "target-blank-links",
         ])
 
-    return render_template('posts.html', title='Posts', articles=articles, cur_time=datetime.utcnow())
+    return render_template('posts.html', title='Posts', articles=articles, all_articles=all_articles, cur_time=datetime.utcnow(), quote=quote)
 
 @app.route('/album')
 def album():
@@ -180,9 +192,9 @@ def account():
         update_profile_form.email.data = current_user.email
 
     profile_picture = url_for('static', filename=f'profile_image/{current_user.profile_picture}')
-    return render_template('account.html', 
-                            title='Profile', 
-                            profile_picture=profile_picture, 
+    return render_template('account.html',
+                            title='Profile',
+                            profile_picture=profile_picture,
                             form=update_profile_form)
 
 @app.route('/posts/create', methods=['GET', 'POST'])
@@ -200,7 +212,7 @@ def create_article():
 
         return redirect(url_for('posts'))
 
-    return render_template('create_article.html', title='New Article', 
+    return render_template('create_article.html', title='New Article',
                             form=article_form, legend='New Article')
 
 @app.route('/posts/<int:article_id>')
@@ -225,7 +237,7 @@ def update_article(article_id):
     if article.author != current_user:
         abort(403)
 
-    article_form = ArticleForm() 
+    article_form = ArticleForm()
     if article_form.validate_on_submit():
         article.title = article_form.title.data
         article.content = article_form.content.data
@@ -240,7 +252,7 @@ def update_article(article_id):
         article_form.content.data = article.content
         article_form.category.data = article.category
 
-    return render_template('create_article.html', title='Update Article', 
+    return render_template('create_article.html', title='Update Article',
                             form=article_form, legend='Update Article')
 
 @app.route('/posts/<int:article_id>/delete', methods=['POST'])
@@ -280,3 +292,20 @@ def user_posts(username):
 
     return render_template('user_posts.html', title='Articles', articles=articles, \
                             user=user, cur_time=datetime.utcnow())
+
+@app.route('/search_article/', methods=['GET', 'POST'])
+def search_article():
+    article_title = request.form['article_title']
+    print(article_title)
+    article = Article.query.filter_by(title=article_title)[0]
+    print(article)
+    return render_template('article.html', title=article.title, article=article, content=markdown2.markdown(article.content, extras=[
+        "fenced-code-blocks",
+        "code-friendly",
+        "cuddled-lists",
+        "tables",
+        "task_list",
+        "footnotes",
+        "xml",
+        "target-blank-links",
+    ]), cur_time=datetime.utcnow())

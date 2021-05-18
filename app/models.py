@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from app import db, login_manager, app
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
-@login_manager.user_loader 
+@login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
@@ -36,3 +36,10 @@ class Article(db.Model):
     def __repr__(self):
         return f"Article('{self.title}', '{self.date_posted}')"
 
+class Quote(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    content = db.Column(db.String(500), nullable=False, default="")
+
+    def __repr__(self):
+        return f"Quote('{self.date}', '{self.content}')"
