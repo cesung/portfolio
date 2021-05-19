@@ -45,14 +45,14 @@ def posts():
     articles = Article.query.order_by(Article.date_posted.desc()).paginate(per_page=ARTICLES_PER_PAGE, page=page)
 
     quote = Quote.query.first()
-    cur_time = datetime.utcnow()
-    if cur_time - timedelta(hours=24) > quote.date:
+    tomorrow_eight = datetime.combine(quote.date.date() + timedelta(hours=24), datetime.min.time()) + timedelta(hours=8)
+    now = datetime.utcnow()
+    if now > tomorrow_eight:
         url = "https://api.quotable.io/random"
         response = requests.get(url)
-        quote.date = cur_time
+        quote.date = now
         quote.content = response.json()['content']
         db.session.commit()
-
 
     for article in articles.items:
         article.content = markdown2.markdown(article.content, extras=[
@@ -296,9 +296,12 @@ def user_posts(username):
 @app.route('/search_article/', methods=['GET', 'POST'])
 def search_article():
     article_title = request.form['article_title']
-    print(article_title)
-    article = Article.query.filter_by(title=article_title)[0]
-    print(article)
+
+    try:
+        article = Article.query.filter_by(title=article_title)[0]
+    except:
+        return redirect(url_for('posts'))
+
     return render_template('article.html', title=article.title, article=article, content=markdown2.markdown(article.content, extras=[
         "fenced-code-blocks",
         "code-friendly",
