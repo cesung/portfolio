@@ -5,12 +5,15 @@ import markdown2
 import requests
 from PIL import Image
 from functools import wraps
+from threading import Thread
+from app import app, db, bcrypt, mail
 from datetime import datetime, timedelta
-from app import app, db, bcrypt
+from flask_mail import Message
 from app.models import User, Article, Quote
 from flask import render_template, url_for, flash, redirect, request, abort
 from flask_login import login_user, current_user, logout_user, login_required
-from app.forms import AddUserForm, DeleteUserForm, LoginForm, UpdateProfileForm, ArticleForm
+from app.forms import (AddUserForm, DeleteUserForm, LoginForm, UpdateProfileForm,
+                        ArticleForm, RequestResetForm, ResetPasswordForm)
 
 APP_ROOT = app.root_path
 PROFILE_PICTURE_PATH = os.path.join(APP_ROOT, 'static/profile_image')
@@ -64,6 +67,7 @@ def posts():
             "footnotes",
             "xml",
             "target-blank-links",
+            "toc",
         ])
 
     return render_template('posts.html', title='Posts', articles=articles, all_articles=all_articles, cur_time=datetime.utcnow(), quote=quote)
@@ -227,6 +231,7 @@ def article(article_id):
         "footnotes",
         "xml",
         "target-blank-links",
+        "toc",
     ]), cur_time=datetime.utcnow())
 
 @app.route('/posts/<int:article_id>/update', methods=['GET', 'POST'])
@@ -288,6 +293,7 @@ def user_posts(username):
             "footnotes",
             "xml",
             "target-blank-links",
+            "toc",
         ])
 
     return render_template('user_posts.html', title='Articles', articles=articles, \
@@ -311,4 +317,67 @@ def search_article():
         "footnotes",
         "xml",
         "target-blank-links",
+        "toc",
     ]), cur_time=datetime.utcnow())
+
+
+def async_send_email(app, msg):
+    with app.app_context():
+        print('in')
+        mail.send(msg)
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Password Reset Request',
+                    sender='noreply@demo.com',
+                    recipients=[user.email])
+    msg.body = f'''To reset your password, visit the following link:
+{url_for('reset_token', token=token, _external=True)}
+
+If you did not make this request then simply ignore thios email and no change will be made.
+'''
+    thread = Thread(target=async_send_email, args=[app, msg])
+    thread.start()
+
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_request():
+    # redirect to posts page if user already login
+    if current_user.is_authenticated:
+        return redirect(url_for('posts'))
+
+    reset_request_form = RequestResetForm()
+
+    if reset_request_form.validate_on_submit():
+        user = User.query.filter_by(email=reset_request_form.email.data).first()
+        send_reset_email(user)
+        flash('An email has been sent with instructions to reset your password', 'info')
+        return redirect(url_for('login'))
+
+    return render_template('reset_request.html', title='Reset Password', form=reset_request_form)
+
+@app.route('/reset_password/<string:token>', methods=['GET', 'POST'])
+def reset_token(token):
+    # redirect to posts page if user already login
+    if current_user.is_authenticated:
+        return redirect(url_for('posts'))
+
+    user = User.verify_reset_token(token)
+    if not user:
+        flash('That is an invaliad or expired token.', 'warning')
+        return redirect(url_for('reset_request'))
+
+    reset_password_form = ResetPasswordForm()
+
+    if reset_password_form.validate_on_submit():
+
+        # hash the user password and decode to string format
+        hashed_password = bcrypt.generate_password_hash(reset_password_form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+
+        flash(f'Your password has been updated', 'success')
+
+        # redirect to login page
+        return redirect(url_for('login'))
+
+    return render_template('reset_token.html', title='Reset Password', form=reset_password_form)

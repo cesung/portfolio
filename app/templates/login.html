@@ -3,7 +3,7 @@
 {% block content %}
     <div class="content-section">
         <!-- set action to empty string in order to post the form to the same route we are currently on -->
-        <form method="POST", action=""> 
+        <form method="POST", action="">
             <!-- Adding CSRF (Cross-Site Request Forgery) token -->
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
@@ -40,6 +40,9 @@
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
+                <small class="text-muted ml-2">
+                    <a href="{{ url_for('reset_request') }}"> Forgot Password? </a>
+                </small>
             </div>
         </form>
     </div>
